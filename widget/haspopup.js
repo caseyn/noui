@@ -1,25 +1,74 @@
-self.addEventListener('click', function listener(e) {
-  var el = event.target, expanded, owns;
+(function (window, document) {
+  "use strict";
 
-  if (el.nodeType) {
-    while (el.getAttribute && el.getAttribute('aria-haspopup') != 'true' && el.parentNode) {
-      el = el.parentNode;
+  window.addEventListener('click', onclick, false);
+  window.addEventListener('keyup', onkeyup, false);
+  
+  var active;
+  
+  function onclick(e) {
+    var el, expanded, owns;
+  
+    if (e.defaultPrevented) return;
+
+    el = get(e.target);
+  
+    if (active && !active.isSameNode(el)) {
+      close(active);
+      active = undefined;
+    }
+
+    if (el.getAttribute && el.getAttribute('aria-haspopup') == 'true') {
+      toggle(el);
+      active = el;
+    }
+  }
+
+  function onkeyup(e) {
+    var el, expanded, owns;
+  
+    if (e.defaultPrevented) return;
+
+    el = e.target;
+
+    if (el.getAttribute && el.getAttribute('aria-haspopup') == 'true') {
+      switch (e.keyCode) {
+        // TAB
+        case 9:
+        // SHIFT TAB
+        case 16:
+          if (!active) break;
+          el = active;
+        // ESC
+        case 27:
+          if (isopen(el)) close(el);
+          break;
+        // Down
+        case 40:
+          open(el);
+          active =el;
+          break;
+      }
     }
   }
   
-  if (listener.active && !listener.active.isSameNode(el)) {
-    listener.active.setAttribute('aria-expanded', false);
-  
-    owns = listener.active.getAttribute('aria-owns');
-    if (owns) {
-      owns = document.getElementById(owns);
-      owns.setAttribute('aria-hidden', true);
+  function get(el) {
+    if (el.nodeType) {
+      while (el.getAttribute && el.getAttribute('aria-haspopup') != 'true' && el.parentNode) {
+        el = el.parentNode;
+      }
     }
-    delete listener.active;
+    return el;
   }
-
-  if (el.getAttribute && el.getAttribute('aria-haspopup') == 'true') {
-    expanded = el.getAttribute('aria-expanded') == 'true';
+  
+  function isopen(el) {
+    return el.getAttribute('aria-expanded') == 'true';
+  }
+  
+  function toggle(el) {
+    var owns, expanded;
+    
+    expanded = isopen(el);
   
     el.setAttribute('aria-expanded', !expanded);
   
@@ -28,8 +77,30 @@ self.addEventListener('click', function listener(e) {
       owns = document.getElementById(owns);
       owns.setAttribute('aria-hidden', expanded);
     }
-  
-    listener.active = el;
   }
   
-}, false);
+  function open(el) {
+    var owns;
+    
+    el.setAttribute('aria-expanded', true);
+  
+    owns = el.getAttribute('aria-owns');
+    if (owns) {
+      owns = document.getElementById(owns);
+      owns.setAttribute('aria-hidden', false);
+    }
+  }
+  
+  function close(el) {
+    var owns;
+    
+    el.setAttribute('aria-expanded', false);
+  
+    owns = el.getAttribute('aria-owns');
+    if (owns) {
+      owns = document.getElementById(owns);
+      owns.setAttribute('aria-hidden', true);
+    }
+  }
+  
+}(window, document));

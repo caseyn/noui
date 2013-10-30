@@ -1,4 +1,4 @@
-NOUI
+NoUI
 ====
 
 Accessible HTML widget library

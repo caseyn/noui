@@ -7,7 +7,7 @@
   var active;
   
   function onclick(e) {
-    var el, expanded, owns;
+    var el;
   
     if (e.defaultPrevented) return;
 
@@ -25,7 +25,7 @@
   }
 
   function onkeyup(e) {
-    var el, expanded, owns;
+    var el;
   
     if (e.defaultPrevented) return;
 
@@ -54,7 +54,7 @@
   
   function get(el) {
     if (el.nodeType) {
-      while (el.getAttribute && el.getAttribute('aria-haspopup') != 'true' && el.parentNode) {
+      while (el.getAttribute && el.getAttribute('aria-haspopup') != 'true') {
         el = el.parentNode;
       }
     }

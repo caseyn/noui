@@ -1,8 +1,7 @@
 self.addEventListener('click', function listener(e) {
-  var el, expanded, owns;
+  var el = event.target, expanded, owns;
 
-  if (e.target.nodeType) {
-    el = event.target;
+  if (el.nodeType) {
     while (el.getAttribute && el.getAttribute('aria-haspopup') != 'true' && el.parentNode) {
       el = el.parentNode;
     }

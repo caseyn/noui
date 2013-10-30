@@ -1,4 +1,4 @@
-nojs
+NOUI
 ====
 
-Pure CSS UI widget library
+Accessible HTML widget library

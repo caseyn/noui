@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<title>Dropdown button</title>
+
+<!--
+
+-->
+
+<link rel="stylesheet" src="">
+
+<script async src=""></script>
+
+<!--
+
+-->
+
+<button aria-haspopup="true" aria-owns="menu-1">Label</button>
+<menu type="popup" role="menu" id="menu-1" aria-hidden="true">
+  <menuitem role="menuitem">Item</menuitem>
+</menu>

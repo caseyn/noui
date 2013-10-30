@@ -1,4 +1,6 @@
-
+[aria-haspopup=true] {
+  position: relative;
+}
 [aria-haspopup=true] [role=menu] {
   display: none;
   position: absolute;

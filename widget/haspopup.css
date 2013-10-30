@@ -1,0 +1,8 @@
+
+[aria-haspopup=true] [role=menu] {
+  display: none;
+  position: absolute;
+}
+[aria-haspopup=true][aria-expanded=true] [role=menu] {
+  display: block;
+}

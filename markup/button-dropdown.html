@@ -2,7 +2,10 @@
 <title>Dropdown button</title>
 
 <!--
+http://www.w3.org/TR/html51/forms.html#the-button-element
+http://www.w3.org/TR/aria-in-html/#recommendations-table
 
+http://www.w3.org/TR/wai-aria/states_and_properties#aria-hidden
 -->
 
 <link rel="stylesheet" src="../widget/haspopup.css">
@@ -13,7 +16,7 @@
 
 -->
 
-<button aria-haspopup="true" aria-owns="menu-1">Label</button>
+<button type="menu" menu="menu-1" aria-haspopup="true" aria-owns="menu-1">Label</button>
 <menu type="popup" role="menu" id="menu-1" aria-hidden="true">
   <menuitem role="menuitem">Item</menuitem>
 </menu>

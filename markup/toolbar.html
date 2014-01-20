@@ -3,7 +3,12 @@
 
 <!--
 http://www.w3.org/TR/wai-aria-practices/#toolbar
+
+http://www.w3.org/TR/html51/interactive-elements.html#toolbar-state
 -->
+
+<link rel="stylesheet" href="../layout/toolbar.css"></script>
+<link rel="stylesheet" href="../style/toolbar.css"></script>
 
 <script async src="../widget/toolbar.js"></script>
 
@@ -11,7 +16,10 @@ http://www.w3.org/TR/wai-aria-practices/#toolbar
 
 -->
 
-<menu type="toolbar" role="toolbar">
+<menu type="toolbar" role="toolbar" tabindex="0">
+  <li>
+    <button>Label</button>
+  </li>
   <li>
     <button>Label</button>
   </li>
@@ -21,7 +29,10 @@ http://www.w3.org/TR/wai-aria-practices/#toolbar
 
 -->
 
-<ul role="toolbar">
+<ul role="toolbar" tabindex="0">
+  <li>
+    <button>Label</button>
+  </li>
   <li>
     <button>Label</button>
   </li>
